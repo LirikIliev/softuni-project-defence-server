@@ -1,38 +1,38 @@
-const Furniture = require('../models/Furniture.js');
+const Trip = require('../models/Trip.js');
 
 async function getAll() {
-    return Furniture.find({});
+    return Trip.find({});
 };
 
 async function getSortedByDate() {
-    return Furniture.find({}).sort({ data: 'descending' }).limit(3);
+    return Trip.find({}).sort({ data: 'descending' }).limit(3);
 };
 
 async function getAllFromSpecificOwner(ownerId) {
-    return Furniture.find({ _ownerId: ownerId });
+    return Trip.find({ _ownerId: ownerId });
 };
 
 async function getOne(id) {
-    return await Furniture.findById(id);
+    return await Trip.findById(id);
 }
 
 async function create(data) {
-    return await Furniture.create(data);
+    return await Trip.create(data);
 };
 
 async function editOne(id, data) {
-    return await Furniture.findByIdAndUpdate(id, data)
+    return await Trip.findByIdAndUpdate(id, data)
 };
 
 async function deleteOne(id) {
-    return await Furniture.findByIdAndDelete(id);
+    return await Trip.findByIdAndDelete(id);
 };
 
 async function likeOne(id, userId) {
-    return await Furniture.findByIdAndUpdate(id, { $push: { likes: userId } })
+    return await Trip.findByIdAndUpdate(id, { $push: { likes: userId } })
 };
 async function dislikeOne(id, userId) {
-    return await Furniture.findByIdAndUpdate(id, { $pull: { likes: userId } })
+    return await Trip.findByIdAndUpdate(id, { $pull: { likes: userId } })
 };
 
 module.exports = {

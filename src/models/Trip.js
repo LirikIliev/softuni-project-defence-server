@@ -4,7 +4,7 @@ const validateImage = function (image) {
     return regexp.test(image)
 };
 
-const furnitureSchema = new Schema({
+const TripSchema = new Schema({
     author: {
         type: String,
         required: true,
@@ -46,5 +46,5 @@ const furnitureSchema = new Schema({
     },
 })
 
-const Furniture = model('Furniture', furnitureSchema);
-module.exports = Furniture;
+const Trip = model('Trip', TripSchema);
+module.exports = Trip;

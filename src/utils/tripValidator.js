@@ -1,4 +1,4 @@
-exports.furnitureValidator = (data) => {
+exports.tripValidator = (data) => {
     let imageUrlRegexp = /^https:\/\/|http:\/\//g;
     let match = data.imageUrl.match(imageUrlRegexp)
     if (data.author && data.country && data.destination && data.description && data.imageUrl) {

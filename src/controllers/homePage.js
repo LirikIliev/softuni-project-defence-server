@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const api = require('../service/Furniture.js');
 const { errorMapper } = require('../utils/errorMapper.js');
-const { furnitureValidator } = require('../utils/furnitureValidator.js');
+const { tripValidator } = require('../utils/tripValidator.js');
 const { isAuth } = require('../middleware/guards.js');
 
 // home page controller
@@ -25,7 +25,7 @@ router.post('/create-trip', isAuth(), async (req, res) => {
         _ownerId: req.user._id,
     };
     try {
-        const validateData = furnitureValidator(furniture);
+        const validateData = tripValidator(furniture);
         const result = await api.create(validateData);
         res.status(201).json(result);
     } catch (error) {

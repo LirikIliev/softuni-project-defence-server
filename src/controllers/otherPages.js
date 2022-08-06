@@ -1,16 +1,18 @@
 const router = require('express').Router();
 const api = require('../service/furniture.js');
 const { errorMapper } = require('../utils/errorMapper.js');
-const { furnitureValidator } = require('../utils/FurnitureValidator.js');
+const { furnitureValidator } = require('../utils/tripValidator.js');
 const { createUser, getUser, logout } = require('../service/user.js');
 const { sessionName, blackList } = require('../constants.js');
 const { preload } = require('../middleware/preload.js');
 const { isOwner, isAuth } = require('../middleware/guards.js');
+const { userValidator } = require('../utils/userValidator.js');
 
 // register page collector
 router.post('/user/register', async (req, res) => {
+    const validator = userValidator(req.body);
     try {
-        let creation = await createUser(req.body);
+        let creation = await createUser(validator);
         res.cookie(sessionName, creation.accessToken, { httpOnly: true });
         res.status(201).json(creation);
     } catch (error) {
