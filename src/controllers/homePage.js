@@ -16,7 +16,7 @@ router.get('/all-posts', async (req, res) => {
 
 // create page controller
 router.post('/create-trip', isAuth(), async (req, res) => {
-    let furniture = {
+    let trip = {
         author: req.body.author,
         country: req.body.country,
         destination: req.body.destination,
@@ -25,7 +25,7 @@ router.post('/create-trip', isAuth(), async (req, res) => {
         _ownerId: req.user._id,
     };
     try {
-        const validateData = tripValidator(furniture);
+        const validateData = tripValidator(trip);
         const result = await api.create(validateData);
         res.status(201).json(result);
     } catch (error) {

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const api = require('../service/furniture.js');
 const { errorMapper } = require('../utils/errorMapper.js');
-const { furnitureValidator } = require('../utils/tripValidator.js');
+const { tripValidator } = require('../utils/tripValidator.js');
 const { createUser, getUser, logout } = require('../service/user.js');
 const { sessionName, blackList } = require('../constants.js');
 const { preload } = require('../middleware/preload.js');
@@ -46,7 +46,7 @@ router.get('/details/:id', preload(), (req, res) => {
 // edit page collector
 router.put('/edit-trip/:id', preload(), isOwner(), async (req, res) => {
     try {
-        let editValidator = furnitureValidator(req.body);
+        let editValidator = tripValidator(req.body);
         let editedTrip = await api.editOne(req.params.id, editValidator);
         res.json(editedTrip);
     } catch (error) {
