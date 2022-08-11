@@ -7,6 +7,7 @@ exports.auth = (req, res, next) => {
         try {
             const payload = verifyToken(token);
             req.user = {
+                fullName: payload.fullName,
                 email: payload.email,
                 _id: payload._id,
                 token,
