@@ -96,6 +96,7 @@ router.delete('/details/:id/delete-comment', isAuth(), async (req, res) => {
 router.post('/user/register', async (req, res) => {
     const validator = userValidator(req.body);
     try {
+        console.log(req.body);
         let creation = await createUser(validator);
         res.cookie(sessionName, creation.accessToken, { httpOnly: true });
         res.status(201).json(creation);

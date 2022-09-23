@@ -21,6 +21,7 @@ exports.createUser = async (data) => {
     let accessToken = await token(data.email, data.password);
 
     const user = {
+        fullName: createdUser.fullName,
         email: createdUser.email,
         _id: createdUser._id,
         accessToken,
